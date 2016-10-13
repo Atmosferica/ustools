@@ -21,7 +21,11 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),ui(new Ui::MainWin
     connect(proc, SIGNAL(error(QString)), this, SLOT(errorPrint()));
     connect(proc, SIGNAL(deviceLink()), this, SLOT(deviceLink()));
     connect(tt, SIGNAL(started()), proc, SLOT(process()));
+<<<<<<< HEAD
     connect(ui->Btn1,SIGNAL(clicked()), this, SLOT(grabData()));
+=======
+    connect(ui->Btn1,SIGNAL(clicked()), this, SLOT(grubData()));
+>>>>>>> 4801462... First Attempt to make a frendly GUI for UltraSonic anemometer control.
     connect(proc, &Processo::response , this, &MainWindow::writeData);
 
 
@@ -46,9 +50,15 @@ void MainWindow::deviceLink()
 
 }
 
+<<<<<<< HEAD
 void MainWindow::grabData(){
 
     qDebug() << "grabdata " << QThread::currentThreadId();
+=======
+void MainWindow::grubData(){
+
+    qDebug() << "grubdata " << QThread::currentThreadId();
+>>>>>>> 4801462... First Attempt to make a frendly GUI for UltraSonic anemometer control.
 
     proc->portName = "/dev/"+ui->serialPortComboBox->currentText();
     qDebug() << proc->portName;
