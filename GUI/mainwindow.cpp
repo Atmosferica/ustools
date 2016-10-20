@@ -21,7 +21,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),ui(new Ui::MainWin
     connect(proc, SIGNAL(error(QString)), this, SLOT(errorPrint()));
     connect(proc, SIGNAL(deviceLink()), this, SLOT(deviceLink()));
     connect(tt, SIGNAL(started()), proc, SLOT(process()));
-    connect(ui->Btn1,SIGNAL(clicked()), this, SLOT(grubData()));
+    connect(ui->Btn1,SIGNAL(clicked()), this, SLOT(grabData()));
     connect(proc, &Processo::response , this, &MainWindow::writeData);
 
 
@@ -46,9 +46,9 @@ void MainWindow::deviceLink()
 
 }
 
-void MainWindow::grubData(){
+void MainWindow::grabData(){
 
-    qDebug() << "grubdata " << QThread::currentThreadId();
+    qDebug() << "grabdata " << QThread::currentThreadId();
 
     proc->portName = "/dev/"+ui->serialPortComboBox->currentText();
     qDebug() << proc->portName;

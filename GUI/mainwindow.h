@@ -20,7 +20,7 @@ public:
 
 private slots:
     void errorPrint();
-    void grubData();
+    void grabData();
     void deviceLink();
     void writeData(const QString &s);
 

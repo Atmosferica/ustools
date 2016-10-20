@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>Grub Data</string>
+     <string>Grab Data</string>
     </property>
    </widget>
    <widget class="QTextEdit" name="outText">
