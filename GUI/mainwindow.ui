@@ -24,11 +24,7 @@
      </rect>
     </property>
     <property name="text">
-<<<<<<< HEAD
      <string>Grab Data</string>
-=======
-     <string>Grub Data</string>
->>>>>>> 4801462... First Attempt to make a frendly GUI for UltraSonic anemometer control.
     </property>
    </widget>
    <widget class="QTextEdit" name="outText">
