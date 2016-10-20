@@ -131,7 +131,7 @@ public:
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", 0));
         actionExit->setText(QApplication::translate("MainWindow", "Exit", 0));
-        Btn1->setText(QApplication::translate("MainWindow", "Grab Data", 0));
+        Btn1->setText(QApplication::translate("MainWindow", "Grub Data", 0));
         outText->setPlaceholderText(QString());
         comboBox->clear();
         comboBox->insertItems(0, QStringList()

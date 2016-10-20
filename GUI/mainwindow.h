@@ -20,11 +20,7 @@ public:
 
 private slots:
     void errorPrint();
-<<<<<<< HEAD
-    void grabData();
-=======
     void grubData();
->>>>>>> 4801462... First Attempt to make a frendly GUI for UltraSonic anemometer control.
     void deviceLink();
     void writeData(const QString &s);
 

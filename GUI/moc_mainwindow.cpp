@@ -32,13 +32,13 @@ static const qt_meta_stringdata_MainWindow_t qt_meta_stringdata_MainWindow = {
 QT_MOC_LITERAL(0, 0, 10), // "MainWindow"
 QT_MOC_LITERAL(1, 11, 10), // "errorPrint"
 QT_MOC_LITERAL(2, 22, 0), // ""
-QT_MOC_LITERAL(3, 23, 8), // "grabData"
+QT_MOC_LITERAL(3, 23, 8), // "grubData"
 QT_MOC_LITERAL(4, 32, 10), // "deviceLink"
 QT_MOC_LITERAL(5, 43, 9), // "writeData"
 QT_MOC_LITERAL(6, 53, 1) // "s"
 
     },
-    "MainWindow\0errorPrint\0\0grabData\0"
+    "MainWindow\0errorPrint\0\0grubData\0"
     "deviceLink\0writeData\0s"
 };
 #undef QT_MOC_LITERAL
@@ -78,7 +78,7 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         Q_UNUSED(_t)
         switch (_id) {
         case 0: _t->errorPrint(); break;
-        case 1: _t->grabData(); break;
+        case 1: _t->grubData(); break;
         case 2: _t->deviceLink(); break;
         case 3: _t->writeData((*reinterpret_cast< const QString(*)>(_a[1]))); break;
         default: ;
