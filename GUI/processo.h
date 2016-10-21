@@ -16,6 +16,7 @@ public:
 
 public slots:
     void process();
+    void endProcess();
 
 
 signals:

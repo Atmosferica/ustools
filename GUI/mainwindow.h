@@ -20,7 +20,8 @@ public:
 
 private slots:
     void errorPrint();
-    void grubData();
+    void grabData();
+    void endProcess();
     void deviceLink();
     void writeData(const QString &s);
 
@@ -32,6 +33,8 @@ private:
     QString responseTOT = "";
     int size = 0;
 
+signals:
+    void stop();
 };
 
 #endif // MAINWINDOW_H

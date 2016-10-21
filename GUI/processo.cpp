@@ -5,7 +5,7 @@
 #include <iostream>
 #include <unistd.h>
 #include <QtSerialPort/QSerialPort>
-
+#define DEBUG
 
 Processo::Processo()
 {
@@ -21,6 +21,11 @@ Processo::~Processo()
 void Processo::process()
 {
     qDebug() << "Open Serial Connection. Thread: " << QThread::currentThreadId();
+
+
+
+
+#ifndef DEBUG
     QSerialPort serial;
     int serialPortBaud = QSerialPort::Baud9600;
     serial.setBaudRate(serialPortBaud);
@@ -45,8 +50,24 @@ void Processo::process()
                 requestData += serial.readAll();
             QString response(requestData);
             qDebug() << requestData;
-            //emit this->response(response);
+            emit this->response(response);:
         }
     }
+#else
+    int count=0;
+    emit deviceLink();
+    for(int i=0; i<10; i++){
+        qDebug() << count ;
+        emit this->response(QString::number(count));
+        count++;
+        sleep(1);
+    }
+#endif
+
+}
+
+void Processo::endProcess()
+{
+    emit finished();
 }
 
