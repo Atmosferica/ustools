@@ -24,6 +24,8 @@ void Processo::process()
     QSerialPort serial;
     int serialPortBaud = QSerialPort::Baud9600;
     serial.setBaudRate(serialPortBaud);
+    serial.setBreakEnabled(false);
+    serial.setDataBits(QSerialPort::Data8);
 
 
     while(1){
@@ -37,16 +39,14 @@ void Processo::process()
         }
 
 
-        /*QByteArray requestData = serial.readLine();
-        requestData.append(serial.readLine());*/
-        char buf[1024];
-        qint64 lineLength = serial.readLine(buf,sizeof(buf));
-
-        std::cout << lineLength << std::endl;
-
-        //QString response(requestData);
-        //emit this->response(response);
-        sleep(1);
+        if(serial.waitForReadyRead(1)){
+            QByteArray requestData = serial.readAll();
+            while(serial.waitForReadyRead(10))
+                requestData += serial.readAll();
+            QString response(requestData);
+            qDebug() << requestData;
+            //emit this->response(response);
+        }
     }
 }
 
