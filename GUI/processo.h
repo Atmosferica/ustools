@@ -4,6 +4,7 @@
 #include <QObject>
 #include <QMutex>
 
+
 class Processo : public QObject
 {
     Q_OBJECT
@@ -16,7 +17,8 @@ public:
 
 public slots:
     void process();
-    void endProcess();
+    void stopProcess();
+    void restartProcess();
 
 
 signals:

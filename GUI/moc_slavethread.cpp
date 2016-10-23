@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'slavethread.h'
 **
-** Created by: The Qt Meta Object Compiler version 67 (Qt 5.6.1)
+** Created by: The Qt Meta Object Compiler version 67 (Qt 5.3.2)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
@@ -12,7 +12,7 @@
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'slavethread.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 67
-#error "This file was generated using the moc from 5.6.1. It"
+#error "This file was generated using the moc from 5.3.2. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
@@ -20,21 +20,20 @@
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_SlaveThread_t {
     QByteArrayData data[5];
-    char stringdata0[45];
+    char stringdata[45];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
-    qptrdiff(offsetof(qt_meta_stringdata_SlaveThread_t, stringdata0) + ofs \
+    qptrdiff(offsetof(qt_meta_stringdata_SlaveThread_t, stringdata) + ofs \
         - idx * sizeof(QByteArrayData)) \
     )
 static const qt_meta_stringdata_SlaveThread_t qt_meta_stringdata_SlaveThread = {
     {
-QT_MOC_LITERAL(0, 0, 11), // "SlaveThread"
-QT_MOC_LITERAL(1, 12, 8), // "WorkDone"
-QT_MOC_LITERAL(2, 21, 0), // ""
-QT_MOC_LITERAL(3, 22, 6), // "DoWork"
-QT_MOC_LITERAL(4, 29, 15) // "stopacquisition"
-
+QT_MOC_LITERAL(0, 0, 11),
+QT_MOC_LITERAL(1, 12, 8),
+QT_MOC_LITERAL(2, 21, 0),
+QT_MOC_LITERAL(3, 22, 6),
+QT_MOC_LITERAL(4, 29, 15)
     },
     "SlaveThread\0WorkDone\0\0DoWork\0"
     "stopacquisition"
@@ -75,7 +74,6 @@ void SlaveThread::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
 {
     if (_c == QMetaObject::InvokeMetaMethod) {
         SlaveThread *_t = static_cast<SlaveThread *>(_o);
-        Q_UNUSED(_t)
         switch (_id) {
         case 0: _t->WorkDone(); break;
         case 1: _t->DoWork(); break;
@@ -89,7 +87,6 @@ void SlaveThread::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
             typedef void (SlaveThread::*_t)();
             if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&SlaveThread::WorkDone)) {
                 *result = 0;
-                return;
             }
         }
     }
@@ -98,7 +95,7 @@ void SlaveThread::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
 
 const QMetaObject SlaveThread::staticMetaObject = {
     { &QThread::staticMetaObject, qt_meta_stringdata_SlaveThread.data,
-      qt_meta_data_SlaveThread,  qt_static_metacall, Q_NULLPTR, Q_NULLPTR}
+      qt_meta_data_SlaveThread,  qt_static_metacall, 0, 0}
 };
 
 
@@ -109,8 +106,8 @@ const QMetaObject *SlaveThread::metaObject() const
 
 void *SlaveThread::qt_metacast(const char *_clname)
 {
-    if (!_clname) return Q_NULLPTR;
-    if (!strcmp(_clname, qt_meta_stringdata_SlaveThread.stringdata0))
+    if (!_clname) return 0;
+    if (!strcmp(_clname, qt_meta_stringdata_SlaveThread.stringdata))
         return static_cast<void*>(const_cast< SlaveThread*>(this));
     return QThread::qt_metacast(_clname);
 }
@@ -135,6 +132,6 @@ int SlaveThread::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 // SIGNAL 0
 void SlaveThread::WorkDone()
 {
-    QMetaObject::activate(this, &staticMetaObject, 0, Q_NULLPTR);
+    QMetaObject::activate(this, &staticMetaObject, 0, 0);
 }
 QT_END_MOC_NAMESPACE

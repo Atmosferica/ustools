@@ -2,6 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QTextStream>
+#include <QFile>
 #include <slavethread.h>
 #include <processo.h>
 
@@ -32,6 +34,9 @@ private:
     Processo* proc = new Processo();
     QString responseTOT = "";
     int size = 0;
+    bool status_stop = true;
+    QFile *file;
+    QTextStream *stream;
 
 signals:
     void stop();

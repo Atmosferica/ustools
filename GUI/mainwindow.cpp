@@ -3,9 +3,12 @@
 #include <iostream>
 #include <unistd.h>
 #include <QTimer>
+#include <QFile>
 #include <QtSerialPort/QSerialPort>
 #include <QSerialPortInfo>
 #include <qdebug.h>
+#include <QMessageBox>
+
 
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),ui(new Ui::MainWindow)
@@ -23,14 +26,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),ui(new Ui::MainWin
     connect(tt, SIGNAL(started()), proc, SLOT(process()));
     connect(ui->BtnStop, SIGNAL(clicked()), this, SLOT(endProcess()));
     connect(ui->Btn1,SIGNAL(clicked()), this, SLOT(grabData()));
-
-    connect(proc, SIGNAL(finished()), tt, SLOT(deleteLater()));
-    connect(proc, SIGNAL(finished()),proc,SLOT(deleteLater()));
-    connect(tt, SIGNAL(finished()), tt, SLOT(deleteLater()));
-
-
     connect(proc, &Processo::response , this, &MainWindow::writeData);
-    connect(this, &MainWindow::stop, proc, &Processo::endProcess);
+
 
 }
 
@@ -40,21 +37,42 @@ MainWindow::~MainWindow()
 }
 
 void MainWindow::errorPrint(){
+    QPalette palette;
+
+    palette.setBrush( QPalette::Background, QBrush( Qt::red ) );
+
     QString error;
     error = "Error!";
-    ui->statusLab->setText(error);
     tt->quit();
+    ui->labelStatus->setPalette(palette);
 }
 
 void MainWindow::deviceLink()
 {
-    ui->statusLab->setText("Connect");
+    QPalette palette;
+    palette.setBrush( QPalette::Background, QBrush( Qt::green ) );
+    palette.setBrush( QPalette::Background, QBrush( Qt::green ) );
+
+    ui->labelStatus->setPalette(palette);
 
 }
 
 void MainWindow::grabData(){
+    QString fileName = ui->plainTextEdit->toPlainText();
 
-    qDebug() << "grubdata " << QThread::currentThreadId();
+    if(fileName == ""){
+        QMessageBox::information(0,"Load Parameters", "ERROR!\nField: Data File is empty. Please select a file name");
+        return ;
+    }
+    file = new QFile(fileName);
+
+    if(!file->open(QIODevice::ReadWrite | QFile::Truncate)){
+        QMessageBox::information(0,"Open File", "ERROR!\nImpossible to open or create Data File");
+        return;
+    }
+
+    ui->Btn1->setEnabled(false);
+    qDebug() << "grabdata " << QThread::currentThreadId();
 
     proc->portName = "/dev/"+ui->serialPortComboBox->currentText();
     qDebug() << proc->portName;
@@ -63,20 +81,21 @@ void MainWindow::grabData(){
 
 void MainWindow::endProcess()
 {
-    qDebug() << "Ciao1" ;
-    emit stop();
-    proc->endProcess();
+    if(status_stop){
+        proc->stopProcess();
+        ui->BtnStop->setText("CONTINUE");
+        status_stop = !status_stop;
+    }else{
+
+        ui->BtnStop->setText("STOP");
+        proc->restartProcess();
+        status_stop = !status_stop;
+    }
+
 }
 
 void MainWindow::writeData(const QString &s)
 {
-    size++;
-    if(size == 20){
-        responseTOT = "";
-        size = 0;
-    } else
-        responseTOT += s + "\n";
-
-    ui->outText->setText(responseTOT);
-
+    QTextStream out(file);
+    out << s;
 }

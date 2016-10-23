@@ -5,12 +5,11 @@
 #include <iostream>
 #include <unistd.h>
 #include <QtSerialPort/QSerialPort>
-#define DEBUG
+//#define DEBUG
 
 Processo::Processo()
 {
     //QMutexLocker locker(&mutex);
-    mutex.lock();
 }
 
 Processo::~Processo()
@@ -34,7 +33,10 @@ void Processo::process()
 
 
     while(1){
-        serial.close();
+        mutex.lock();
+        mutex.unlock();
+
+        //serial.close();
         serial.setPortName(portName);
         if (!serial.open(QIODevice::ReadOnly)) {
             emit error(tr("Can't open %1, error code %2").arg(portName).arg(serial.error()));
@@ -48,26 +50,36 @@ void Processo::process()
             QByteArray requestData = serial.readAll();
             while(serial.waitForReadyRead(10))
                 requestData += serial.readAll();
+	    	qDebug() << "ciao";
             QString response(requestData);
-            qDebug() << requestData;
-            emit this->response(response);:
+            qDebug() << response;
+	    emit this->response(response);
         }
     }
 #else
     int count=0;
     emit deviceLink();
-    for(int i=0; i<10; i++){
-        qDebug() << count ;
+    while(1){
+        mutex.lock();
+
+
+        mutex.unlock();
         emit this->response(QString::number(count));
         count++;
-        sleep(1);
+        sleep(0.5);
     }
 #endif
 
 }
 
-void Processo::endProcess()
+void Processo::stopProcess()
 {
-    emit finished();
+
+    mutex.lock();
 }
 
+void Processo::restartProcess()
+{
+
+    mutex.unlock();
+}
