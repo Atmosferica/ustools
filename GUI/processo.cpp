@@ -5,7 +5,7 @@
 #include <iostream>
 #include <unistd.h>
 #include <QtSerialPort/QSerialPort>
-//#define DEBUG
+#define DEBUG
 
 Processo::Processo()
 {

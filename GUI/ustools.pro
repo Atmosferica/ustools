@@ -16,10 +16,12 @@ QMAKE_CXXFLAGS += -std=c++0x
 SOURCES += main.cpp\
         mainwindow.cpp \
     slavethread.cpp \
-    processo.cpp
+    processo.cpp \
+    #writer.cpp
 
 HEADERS  += mainwindow.h \
     slavethread.h \
-    processo.h
+    processo.h \
+    #writer.h
 
 FORMS    += mainwindow.ui
